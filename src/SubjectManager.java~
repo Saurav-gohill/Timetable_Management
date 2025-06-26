@@ -1,0 +1,16 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class SubjectManager {
+    public void addSubject(Subject subject) {
+        String sql = "INSERT INTO Subject(subjectName) VALUES(?)";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, subject.getSubjectName());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out .println(e.getMessage());
+        }
+    }
+}

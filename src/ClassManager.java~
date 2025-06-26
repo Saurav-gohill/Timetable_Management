@@ -1,0 +1,19 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class ClassManager {
+    public void addClass(Class classObj) {
+        String sql = "INSERT INTO Class(subject, faculty, room, time) VALUES(?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, classObj.getSubject().getSubjectName());
+            pstmt.setString(2, classObj.getFaculty().getName());
+            pstmt.setString(3, classObj.getRoom().getRoomName());
+            pstmt.setString(4, classObj.getTime());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}

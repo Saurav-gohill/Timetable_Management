@@ -1,0 +1,18 @@
+public class Faculty {
+    private String name;
+    private String email;
+
+    public Faculty(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    // Getters and Setters
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+}

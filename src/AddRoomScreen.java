@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 
 public class AddRoomScreen extends JFrame {
     private JTextField roomNameField;
-    private JTextField capacityField;
+    private JComboBox<String> capacityCombobox;
 
     public AddRoomScreen() {
         setTitle("Add Room");
@@ -18,31 +18,44 @@ public class AddRoomScreen extends JFrame {
         Image image = icon.getImage(); // Convert ImageIcon to Image
         setIconImage(image); // Set the icon for the JFrame
 
-        JPanel panel = new JPanel(new GridLayout(3, 2));
-        panel.add(new JLabel("Room Name:"));
+        // Use null layout to manually set bounds
+        setLayout(null);
+
+        // Room Name Label and Field
+        JLabel roomNameLabel = new JLabel("Room Name:");
+        roomNameLabel.setBounds(20, 20, 100, 20); // x, y, width, height
+        add(roomNameLabel);
+
         roomNameField = new JTextField();
-        panel.add(roomNameField);
+        roomNameField.setBounds(130, 20, 200, 20);
+        add(roomNameField);
 
-        panel.add(new JLabel("Capacity:"));
-        capacityField = new JTextField();
-        panel.add(capacityField);
+        // Capacity Label and ComboBox
+        JLabel capacityLabel = new JLabel("Capacity:");
+        capacityLabel.setBounds(20, 50, 100, 20);
+        add(capacityLabel);
 
+        String[] capacity = {"Class", "Lab", "Tutorial"};
+        capacityCombobox = new JComboBox<>(capacity);
+        capacityCombobox.setBounds(130, 50, 200, 20);
+        add(capacityCombobox);
+
+        // Save Button
         JButton saveButton = new JButton("Save");
+        saveButton.setBounds(150, 100, 100, 30);
         saveButton.addActionListener(e -> saveRoom());
-        panel.add(saveButton);
-
-        add(panel);
+        add(saveButton);
     }
 
     private void saveRoom() {
         String roomName = roomNameField.getText();
-        int capacity = Integer.parseInt(capacityField.getText());
+        String capacity = (String) capacityCombobox.getSelectedItem();
 
-        String sql = "INSERT INTO Rooms (room_name, capacity) VALUES (?, ?)";
+        String sql = "INSERT INTO Room (room_name, capacity) VALUES (?, ?)";
         try (Connection conn = Database.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, roomName);
-            pstmt.setInt(2, capacity);
+            pstmt.setString(2, capacity);
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "Room saved successfully!");
         } catch (Exception e) {

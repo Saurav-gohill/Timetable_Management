@@ -17,10 +17,11 @@ public class DatabaseFetcher {
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                String facultyId = rs.getString("faculty_id");
+                String facultyId = rs.getString("id");
                 String facultyName = rs.getString("faculty_name");
+                String nickName = rs.getString("nick_name");
                 String subjects = rs.getString("subjects");
-                facultyList.add(new String[]{facultyId, facultyName, subjects});
+                facultyList.add(new String[]{facultyId, facultyName,nickName, subjects});
             }
         } catch (SQLException e) {
             System.out.println("Error fetching faculty data: " + e.getMessage());
@@ -32,17 +33,17 @@ public class DatabaseFetcher {
     // Fetch all rooms data from the database
     public static List<String[]> fetchRooms() {
         List<String[]> roomsList = new ArrayList<>();
-        String sql = "SELECT * FROM Rooms";
+        String sql = "SELECT * FROM Room";
 
         try (Connection conn = Database.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                String roomId = rs.getString("room_id");
+                String roomId = rs.getString("id");
                 String roomName = rs.getString("room_name");
-                String capacity = rs.getString("capacity");
-                roomsList.add(new String[]{roomId, roomName, capacity});
+                String type = rs.getString("capacity");
+                roomsList.add(new String[]{roomId, roomName, type});
             }
         } catch (SQLException e) {
             System.out.println("Error fetching rooms data: " + e.getMessage());
@@ -61,10 +62,11 @@ public class DatabaseFetcher {
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                String classId = rs.getString("class_id");
+                String classId = rs.getString("id");
                 String className = rs.getString("class_name");
+                String section = rs.getString("section");
                 String subjects = rs.getString("subjects");
-                classesList.add(new String[]{classId, className, subjects});
+                classesList.add(new String[]{classId, className,section, subjects});
             }
         } catch (SQLException e) {
             System.out.println("Error fetching classes data: " + e.getMessage());
