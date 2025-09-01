@@ -59,6 +59,13 @@ The system is designed to be scalable and flexible, allowing it to be easily int
 3. **User Acceptance Testing**: Test the application with real users and sample data
 -->
 📸 **Screenshots**
+<img width="585" height="564" alt="Screenshot 2025-05-08 102818" src="https://github.com/user-attachments/assets/613a7508-ebf2-4f27-b04b-bc0a8a532145" />
+
+<img width="1102" height="863" alt="Screenshot 2025-05-08 101218" src="https://github.com/user-attachments/assets/1d2168e8-6607-4ce3-a51e-72c595e2377b" />
+
+<img width="1173" height="869" alt="Screenshot 2025-05-08 103321" src="https://github.com/user-attachments/assets/af0206aa-047e-46fb-9bf2-dc211ddea5ee" />
+
+<img width="1235" height="496" alt="Screenshot 2025-05-08 103848" src="https://github.com/user-attachments/assets/902f69b9-1583-4a32-8d0d-39395a96b75a" />
 
 * [Add Course Screen](<placeholder>)
 * [View Timetable Screen](<placeholder>)
@@ -71,7 +78,7 @@ Not applicable
 👤 **Author**
 
 Saurav Kumar
-sauravgohill452gmail.com
+sauravgohill45gmail.com
 
 📝 **License**
 MIT License
